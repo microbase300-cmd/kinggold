@@ -4,6 +4,7 @@ import { FounderVision } from './components/FounderVision';
 import { TechBento } from './components/TechBento';
 import { SystemsShowcase } from './components/SystemsShowcase';
 import { ContactFooter } from './components/ContactFooter';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 export function App() {
   return (
@@ -16,6 +17,7 @@ export function App() {
         <SystemsShowcase />
       </main>
       <ContactFooter />
+      <FloatingWhatsApp />
     </div>
   );
 }

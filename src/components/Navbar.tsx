@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, ShieldCheck, Cpu, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Terminal, ShieldCheck, Cpu, Menu, X, ArrowUpRight, MessageSquare } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [time, setTime] = useState<string>('');
@@ -73,8 +73,8 @@ export const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Live Telemetry Status Bar */}
-        <div className="hidden sm:flex items-center gap-4">
+        {/* Live Telemetry Status Bar & Actions */}
+        <div className="hidden sm:flex items-center gap-3">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#12141D] border border-white/10 text-xs font-mono">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
@@ -84,6 +84,17 @@ export const Navbar: React.FC = () => {
             <span className="text-slate-600">|</span>
             <span className="text-slate-400 hidden xl:inline">{time}</span>
           </div>
+
+          {/* Top Bar Direct WhatsApp Link */}
+          <a
+            href="https://wa.me/2348063315614?text=Hello%20Obinna%20(King%20Gold)%2C%20reaching%20out%20from%20your%20portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#10B981]/15 hover:bg-[#10B981]/25 text-[#10B981] border border-[#10B981]/40 font-mono text-xs font-semibold tracking-wide transition-all shadow-sm"
+          >
+            <MessageSquare className="w-3.5 h-3.5" />
+            <span className="hidden md:inline">WHATSAPP</span>
+          </a>
 
           <a
             href="#initiate-contact"
@@ -123,7 +134,15 @@ export const Navbar: React.FC = () => {
               {item.label}
             </a>
           ))}
-          <div className="pt-2">
+          <div className="pt-2 space-y-2">
+            <a
+              href="https://wa.me/2348063315614?text=Hello%20Obinna%20(King%20Gold)%2C%20reaching%20out%20from%20your%20portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-[#10B981]/15 border border-[#10B981]/40 text-[#10B981] font-mono text-xs font-semibold"
+            >
+              <MessageSquare className="w-4 h-4" /> DIRECT WHATSAPP (+234 806 331 5614)
+            </a>
             <a
               href="#initiate-contact"
               onClick={() => setMobileMenuOpen(false)}
