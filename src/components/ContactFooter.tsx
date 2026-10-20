@@ -10,6 +10,8 @@ import {
   ArrowUpRight,
   Layers,
   Radio,
+  Mail,
+  MessageSquare,
 } from 'lucide-react';
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -25,6 +27,12 @@ export const ContactFooter: React.FC = () => {
   const handleDispatch = (e: React.FormEvent) => {
     e.preventDefault();
     setTransmitted(true);
+    // Also trigger mailto so user can send immediately from their client if desired
+    const subject = encodeURIComponent(`[Microbase Brief] ${domainFocus} - ${senderName || 'Inquiry'}`);
+    const body = encodeURIComponent(
+      `Name / Alias: ${senderName}\nOrganization: ${senderOrg || 'Independent'}\nContact: ${senderEmail}\nDomain Focus: ${domainFocus}\n\nTechnical Brief & Objectives:\n${brief}`
+    );
+    window.location.href = `mailto:microbase300@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -56,8 +64,49 @@ export const ContactFooter: React.FC = () => {
               <span className="text-[#F59E0B] font-semibold">Microbase</span> ecosystem.
             </p>
 
-            {/* Operational Readiness Cards */}
+            {/* Operational Readiness & Direct Transmission Channels */}
             <div className="space-y-3 pt-2">
+              {/* Direct Communications: Email & WhatsApp */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a
+                  href="mailto:microbase300@gmail.com"
+                  className="p-3.5 rounded-xl bg-[#12141D] border border-[#F59E0B]/30 hover:border-[#F59E0B] transition-all flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#090A0F] border border-white/10 flex items-center justify-center text-[#F59E0B] group-hover:scale-105 transition-transform">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="font-mono text-[10px] text-slate-400 uppercase block">DIRECT EMAIL</span>
+                      <span className="text-white font-mono text-xs font-semibold group-hover:text-[#F59E0B] transition-colors">
+                        microbase300@gmail.com
+                      </span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#F59E0B] transition-colors" />
+                </a>
+
+                <a
+                  href="https://wa.me/2348063315614?text=Hello%20Obinna%20(King%20Gold)%2C%20reaching%20out%20regarding%20Microbase%20systems%20architecture"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3.5 rounded-xl bg-[#12141D] border border-[#10B981]/30 hover:border-[#10B981] transition-all flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#090A0F] border border-white/10 flex items-center justify-center text-[#10B981] group-hover:scale-105 transition-transform">
+                      <MessageSquare className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="font-mono text-[10px] text-slate-400 uppercase block">DIRECT WHATSAPP</span>
+                      <span className="text-white font-mono text-xs font-semibold group-hover:text-[#10B981] transition-colors">
+                        +234 806 331 5614
+                      </span>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-[#10B981] transition-colors" />
+                </a>
+              </div>
+
               <div className="p-4 rounded-xl bg-[#12141D] border border-white/10 flex items-center justify-between">
                 <div>
                   <span className="font-mono text-[10px] text-slate-400 uppercase block">
@@ -110,7 +159,7 @@ export const ContactFooter: React.FC = () => {
               <div className="px-5 py-3.5 bg-[#090A0F] border-b border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-2 font-mono text-xs text-slate-300">
                   <Terminal className="w-4 h-4 text-[#F59E0B]" />
-                  <span>microbase://dispatch/new-transmission</span>
+                  <span>dispatch &gt; microbase300@gmail.com</span>
                 </div>
                 <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded border border-[#10B981]/30">
                   TLS_1.3_READY
@@ -133,6 +182,9 @@ export const ContactFooter: React.FC = () => {
                   </p>
                   <div className="p-4 rounded-lg bg-[#090A0F] border border-white/10 font-mono text-xs text-left text-slate-300 space-y-1 max-w-lg mx-auto">
                     <div>
+                      <span className="text-slate-500">DISPATCH RECIPIENT:</span> microbase300@gmail.com
+                    </div>
+                    <div>
                       <span className="text-slate-500">ORIGIN:</span> {senderName} ({senderOrg || 'Independent'}) — {senderEmail}
                     </div>
                     <div>
@@ -142,7 +194,7 @@ export const ContactFooter: React.FC = () => {
                       <span className="text-slate-500">PAYLOAD:</span> {brief}
                     </div>
                   </div>
-                  <div className="pt-3">
+                  <div className="pt-3 flex flex-wrap items-center justify-center gap-3">
                     <button
                       onClick={() => {
                         setTransmitted(false);
@@ -152,6 +204,15 @@ export const ContactFooter: React.FC = () => {
                     >
                       NEW TRANSMISSION
                     </button>
+                    <a
+                      href="https://wa.me/2348063315614?text=Hello%20Obinna%20(King%20Gold)%2C%20following%20up%20on%20my%20portfolio%20brief"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-lg bg-[#12141D] border border-[#10B981]/40 text-[#10B981] font-mono text-xs font-semibold hover:bg-[#10B981] hover:text-[#090A0F] transition-colors inline-flex items-center gap-2"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      <span>PING ON WHATSAPP</span>
+                    </a>
                   </div>
                 </div>
               ) : (
